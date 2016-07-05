@@ -19,34 +19,19 @@ import android.content.Context;
 public class ParsePushNotificationPlugin extends CordovaPlugin {
 	private static final String LOG_TAG = "ParsePushNotificationPlugin";
 	private CallbackContext callbackContextKeepCallback;
-	//
 	private String applicationId;
 	private String clientKey;	
-	//
 	private static boolean destroyed;
 		
     @Override
 	public void pluginInitialize() {
 		super.pluginInitialize();
-		//
     }	
 	
-	//@Override
-	//public void onCreate(Bundle savedInstanceState) {//build error
-	//	super.onCreate(savedInstanceState);
-	//	//
-	//}
-	
-	//@Override
-	//public void onStart() {//build error
-	//	super.onStart();
-	//	//
-	//}
 	
   	@Override
     public void onPause(boolean multitasking) {		
         super.onPause(multitasking);
-		//	
     }
       
     @Override
@@ -55,16 +40,9 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
         //
     }
   	
-	//@Override
-	//public void onStop() {//build error
-	//	super.onStop();
-	//	//
-	//}
-	
     @Override
     public void onDestroy() {
         super.onDestroy();
-		//
         destroyed = true;
     }
     
@@ -107,27 +85,6 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 	}
 	
 	private void setUp(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		//Activity activity=cordova.getActivity();
-		//webView
-		//args.length()
-		//args.getString(0)
-		//args.getString(1)
-		//args.getInt(0)
-		//args.getInt(1)
-		//args.getBoolean(0)
-		//args.getBoolean(1)
-		//JSONObject json = args.optJSONObject(0);
-		//json.optString("adUnit")
-		//json.optString("adUnitFullScreen")
-		//JSONObject inJson = json.optJSONObject("inJson");
-		//final String adUnit = args.getString(0);
-		//final String adUnitFullScreen = args.getString(1);				
-		//final boolean isOverlap = args.getBoolean(2);				
-		//final boolean isTest = args.getBoolean(3);				
-		//Log.d(LOG_TAG, String.format("%s", adUnit));			
-		//Log.d(LOG_TAG, String.format("%s", adUnitFullScreen));
-		//Log.d(LOG_TAG, String.format("%b", isOverlap));
-		//Log.d(LOG_TAG, String.format("%b", isTest));		
 		final String applicationId = args.getString(0);
 		final String clientKey = args.getString(1);		
 		Log.d(LOG_TAG, String.format("%s", applicationId));			
@@ -142,26 +99,6 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 			}
 		});
 	}
-	
-/*	
-	private void registerAsPushNotificationClient(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		cordova.getActivity().runOnUiThread(new Runnable(){
-			@Override
-			public void run() {
-				_registerAsPushNotificationClient();
-			}
-		});
-	}
-
-	private void unregister(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		cordova.getActivity().runOnUiThread(new Runnable(){
-			@Override
-			public void run() {
-				_unregister();
-			}
-		});
-	}	
-*/
 
 	private void subscribeToChannel(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		final String channel = args.getString(0);
@@ -204,57 +141,13 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRegisterAsPushNotificationClientSucceeded");
 			pr.setKeepCallback(true);
 			callbackContextKeepCallback.sendPluginResult(pr);
-			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-			//pr.setKeepCallback(true);
-			//callbackContextKeepCallback.sendPluginResult(pr);
         } 
         catch (ParseException e) {
-			//PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRegisterAsPushNotificationClientSucceeded");
-			//pr.setKeepCallback(true);
-			//callbackContextKeepCallback.sendPluginResult(pr);
 			PluginResult pr = new PluginResult(PluginResult.Status.ERROR, "onRegisterAsPushNotificationClientFailed");
 			pr.setKeepCallback(true);
 			callbackContextKeepCallback.sendPluginResult(pr);		
         }		
     }
-
-/*
-    private void _registerAsPushNotificationClient() {
-       try {
-           	Parse.initialize(cordova.getActivity(), applicationId, clientKey);
-    	   	ParseInstallation.getCurrentInstallation().save();
-
-			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRegisterAsPushNotificationClientSucceeded");
-			pr.setKeepCallback(true);
-			callbackContextKeepCallback.sendPluginResult(pr);
-			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-			//pr.setKeepCallback(true);
-			//callbackContextKeepCallback.sendPluginResult(pr);
-        } 
-        catch (ParseException e) {
-			//PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRegisterAsPushNotificationClientSucceeded");
-			//pr.setKeepCallback(true);
-			//callbackContextKeepCallback.sendPluginResult(pr);
-			PluginResult pr = new PluginResult(PluginResult.Status.ERROR, "onRegisterAsPushNotificationClientFailed");
-			pr.setKeepCallback(true);
-			callbackContextKeepCallback.sendPluginResult(pr);		
-        }
-
-		//String installationId = ParseInstallation.getCurrentInstallation().getInstallationId();
-		//String objectId = ParseInstallation.getCurrentInstallation().getObjectId();
-		//Set<String> subscriptions = PushService.getSubscriptions(cordova.getActivity());
-		//subscriptions.toString();
-    }
-
-    private void _unregister() {
-		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onUnregisterSucceeded");
-		pr.setKeepCallback(true);
-		callbackContextKeepCallback.sendPluginResult(pr);
-		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-		//pr.setKeepCallback(true);
-		//callbackContextKeepCallback.sendPluginResult(pr);
-    }
-*/
 
     private void _subscribeToChannel(String channel) {
         ParsePush.subscribeInBackground(channel, new SaveCallback() {
@@ -264,14 +157,8 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
             		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onSubscribeToChannelSucceeded");
             		pr.setKeepCallback(true);
             		callbackContextKeepCallback.sendPluginResult(pr);
-            		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-            		//pr.setKeepCallback(true);
-            		//callbackContextKeepCallback.sendPluginResult(pr);                    
                 } 
                 else {
-            		//PluginResult pr = new PluginResult(PluginResult.Status.OK, "onSubscribeToChannelSucceeded");
-            		//pr.setKeepCallback(true);
-            		//callbackContextKeepCallback.sendPluginResult(pr);
             		PluginResult pr = new PluginResult(PluginResult.Status.ERROR, "onSubscribeToChannelFailed");
             		pr.setKeepCallback(true);
             		callbackContextKeepCallback.sendPluginResult(pr);                    
