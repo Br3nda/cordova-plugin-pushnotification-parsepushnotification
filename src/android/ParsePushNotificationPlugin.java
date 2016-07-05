@@ -17,7 +17,7 @@ import android.content.SharedPreferences;
 import android.content.Context;
 
 public class ParsePushNotificationPlugin extends CordovaPlugin {
-	private static final String LOG_TAG = "ParsePushNotificationPlugin";
+	private static final String LOG_TAG = "ParsePush";
 	private CallbackContext callbackContextKeepCallback;
 	//
 	private String applicationId;
