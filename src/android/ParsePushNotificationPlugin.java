@@ -16,8 +16,8 @@ import android.content.Context;
 public class ParsePushNotificationPlugin extends CordovaPlugin {
 	private static final String LOG_TAG = "ParsePush";
 	private CallbackContext callbackContextKeepCallback;
-	private String applicationId;
-	private String clientKey;	
+	//
+	//
 	private static boolean destroyed;
 		
     @Override
@@ -122,16 +122,13 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 	}
 	
     private void _setUp(String appId, String clientKey) {
-		this.applicationId = appId;
-		this.clientKey = clientKey;
-
        try {
-           	Parse.initialize(cordova.getActivity(), applicationId, clientKey);
+           	Parse.initialize(cordova.getActivity(), appId, clientKey);
     	   	ParseInstallation.getCurrentInstallation().save();
 
 			SharedPreferences sharedPref = cordova.getActivity().getSharedPreferences("cordova-plugin-pushnotification-parse", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sharedPref.edit();
-			editor.putString("applicationId", applicationId);
+			editor.putString("applicationId", appId);
 			editor.putString("clientKey", clientKey);
 			editor.commit();
 		
