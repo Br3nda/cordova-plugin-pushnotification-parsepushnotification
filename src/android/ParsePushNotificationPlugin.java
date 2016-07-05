@@ -16,8 +16,6 @@ import android.content.Context;
 public class ParsePushNotificationPlugin extends CordovaPlugin {
 	private static final String LOG_TAG = "ParsePush";
 	private CallbackContext callbackContextKeepCallback;
-	private String applicationId;
-	private String clientKey;	
 	private static boolean destroyed;
 		
     @Override
@@ -121,10 +119,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 		});
 	}
 	
-    private void _setUp(String appId, String clientKey) {
-		this.applicationId = appId;
-		this.clientKey = clientKey;
-
+    private void _setUp(String applicationId, String clientKey) {
        try {
            	Parse.initialize(cordova.getActivity(), applicationId, clientKey);
     	   	ParseInstallation.getCurrentInstallation().save();
