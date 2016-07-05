@@ -4,11 +4,8 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.JSONException;
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaWebView;
-import android.app.Activity;
+
 import android.util.Log;
 //
 import com.parse.*;
