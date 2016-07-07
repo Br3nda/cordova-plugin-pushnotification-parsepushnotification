@@ -53,18 +53,6 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 
 			return true;
 		}			
-/*		
-		else if (action.equals("registerAsPushNotificationClient")) {
-			registerAsPushNotificationClient(action, args, callbackContext);
-			
-			return true;
-		}
-		else if (action.equals("unregister")) {
-			unregister(action, args, callbackContext);
-						
-			return true;
-		}
-*/		
 		else if (action.equals("subscribeToChannel")) {
 			subscribeToChannel(action, args, callbackContext);
 			
@@ -167,14 +155,8 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
             		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onUnsubscribeSucceeded");
             		pr.setKeepCallback(true);
             		callbackContextKeepCallback.sendPluginResult(pr);
-            		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-            		//pr.setKeepCallback(true);
-            		//callbackContextKeepCallback.sendPluginResult(pr);	
                 } 
                 else {
-            		//PluginResult pr = new PluginResult(PluginResult.Status.OK, "onUnsubscribeSucceeded");
-            		//pr.setKeepCallback(true);
-            		//callbackContextKeepCallback.sendPluginResult(pr);
             		PluginResult pr = new PluginResult(PluginResult.Status.ERROR, "onUnsubscribeFailed");
             		pr.setKeepCallback(true);
             		callbackContextKeepCallback.sendPluginResult(pr);	
