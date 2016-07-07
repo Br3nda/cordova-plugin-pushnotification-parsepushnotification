@@ -128,7 +128,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 			SharedPreferences.Editor editor = sharedPref.edit();
 			editor.putString("applicationId", applicationId);
 			editor.putString("clientKey", clientKey);
-			editor.commit();
+			editor.apply();
 		
 			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRegisterAsPushNotificationClientSucceeded");
 			pr.setKeepCallback(true);
