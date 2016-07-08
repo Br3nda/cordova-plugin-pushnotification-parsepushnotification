@@ -20,6 +20,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 		
     @Override
 	public void pluginInitialize() {
+		Log.d(LOG_TAG, "pluginInitialize()");
 		super.pluginInitialize();
     }	
 
@@ -35,7 +36,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
     
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-
+		Log.d(LOG_TAG, "execute()");
 		if (action.equals("setUp")) {
 			setUp(action, args, callbackContext);
 
@@ -56,6 +57,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 	}
 	
 	private void setUp(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		Log.d(LOG_TAG, "setUp()");
 		final String applicationId = args.getString(0);
 		final String clientKey = args.getString(1);		
 		Log.d(LOG_TAG, String.format("%s", applicationId));			
@@ -72,6 +74,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 	}
 
 	private void subscribeToChannel(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		Log.d(LOG_TAG, "subscribeToChannel()");
 		final String channel = args.getString(0);
 		Log.d(LOG_TAG, String.format("%s", channel));
 		
@@ -84,6 +87,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 	}
 
 	private void unsubscribe(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		Log.d(LOG_TAG, "unsubscribe()");
 		final String channel = args.getString(0);
 		Log.d(LOG_TAG, String.format("%s",channel));
 		
@@ -96,7 +100,8 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 	}
 	
     private void _setUp(String applicationId, String clientKey) {
-       try {
+		Log.d(LOG_TAG, "_setUp()");
+        try {
            	Parse.initialize(cordova.getActivity(), applicationId, clientKey);
     	   	ParseInstallation.getCurrentInstallation().save();
 
@@ -118,6 +123,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
     }
 
     private void _subscribeToChannel(String channel) {
+		Log.d(LOG_TAG, "_subscribeToChannel()");
         ParsePush.subscribeInBackground(channel, new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -136,6 +142,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
     }
 
     private void _unsubscribe(String channel) {
+		Log.d(LOG_TAG, "_unsubscribe()");
         ParsePush.unsubscribeInBackground(channel, new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -143,7 +150,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
             		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onUnsubscribeSucceeded");
             		pr.setKeepCallback(true);
             		callbackContextKeepCallback.sendPluginResult(pr);
-                } 
+                }
                 else {
             		PluginResult pr = new PluginResult(PluginResult.Status.ERROR, "onUnsubscribeFailed");
             		pr.setKeepCallback(true);
