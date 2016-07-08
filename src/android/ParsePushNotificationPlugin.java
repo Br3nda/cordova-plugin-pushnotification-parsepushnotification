@@ -22,19 +22,7 @@ public class ParsePushNotificationPlugin extends CordovaPlugin {
 	public void pluginInitialize() {
 		super.pluginInitialize();
     }	
-	
-	
-  	@Override
-    public void onPause(boolean multitasking) {		
-        super.onPause(multitasking);
-    }
-      
-    @Override
-    public void onResume(boolean multitasking) {
-        super.onResume(multitasking);
-        //
-    }
-  	
+
     @Override
     public void onDestroy() {
         super.onDestroy();
